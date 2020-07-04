@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'vendor/css/bootstrap.min.css' %}" rel="stylesheet">
+    <title>Clone Tube</title>
+    <link href="{% static 'css/album.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About</h4>
+                    <p class="text-muted">Add some information about the album below, the author, or any other
+                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
+                        Then, link them off to some social networking sites or contact information.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                        <li><a href="#" class="text-white">Like on Facebook</a></li>
+                        <li><a href="#" class="text-white">Email me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a href="{% url 'video:home' %}" class="navbar-brand d-flex align-items-center">
+                <strong>Clone-Tube</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1>Upload your contents!</h1>
+            <p class="lead text-muted">Clone-Tube에서 마음에 드는 동영상과 음악을 감상하고, 직접 만든 콘텐츠를 업로드하여 친구, 가족뿐 아니라 전 세계 사람들과 콘텐츠를 공유할 수 있습니다.</p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">무료로 이용하기</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>&copy; 2020 Clone-Tube by Joje1283</p>
+    </div>
+
+</footer>
+<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+<script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
