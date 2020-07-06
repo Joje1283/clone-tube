@@ -7,6 +7,7 @@
     <link href="{% static 'vendor/css/bootstrap.min.css' %}" rel="stylesheet">
     <title>Clone Tube</title>
     <link href="{% static 'css/album.css' %}" rel="stylesheet">
+    {% block extracss %}{% endblock %}
 </head>
 
 <body>
@@ -44,21 +45,8 @@
     </div>
 </header>
 <main role="main">
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1>Upload your contents!</h1>
-            <p class="lead text-muted">Clone-Tube에서 마음에 드는 동영상과 음악을 감상하고, 직접 만든 콘텐츠를 업로드하여 친구, 가족뿐 아니라 전 세계 사람들과 콘텐츠를 공유할 수 있습니다.</p>
-            <p>
-                <a href="#" class="btn btn-primary my-2">무료로 이용하기</a>
-            </p>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        {% block content %}
-        {% endblock %}
-    </div>
-
+    {% block content %}
+    {% endblock %}
 </main>
 
 <footer class="text-muted">
@@ -69,6 +57,7 @@
 </footer>
 <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
 <script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
+{% block extrajs %}{% endblock %}
 </body>
 </html>
 
