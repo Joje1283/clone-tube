@@ -1,68 +1,55 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="{% static 'vendor/css/bootstrap.min.css' %}" rel="stylesheet">
-    <title>Clone Tube</title>
-    <link href="{% static 'css/album.css' %}" rel="stylesheet">
-    {% block extracss %}{% endblock %}
+    <title>Title</title>
+    <link href="{% static 'bootstrap-4.5/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-4.5/site/docs/4.5/examples/carousel/carousel.css' %}" rel="stylesheet">
 </head>
-
 <body>
 <header>
-    <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about the album below, the author, or any other
-                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
-                        Then, link them off to some social networking sites or contact information.</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="#" class="text-white">Like on Facebook</a></li>
-                        <li><a href="#" class="text-white">Email me</a></li>
-                    </ul>
-                </div>
-            </div>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Carousel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a href="{% url 'video:home' %}" class="navbar-brand d-flex align-items-center">
-                <strong>Clone-Tube</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </div>
+    </nav>
 </header>
+
 <main role="main">
-    {% block content %}
-    {% endblock %}
-</main>
-
-<footer class="text-muted">
-    <div class="container">
-        <p>&copy; 2020 Clone-Tube by Joje1283</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            dsafas
+        </div>
     </div>
-
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2020 Joje1283</p>
 </footer>
-<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
-<script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
-{% block extrajs %}{% endblock %}
+<script src="{% static 'jquery-3.5.1.js' %}"></script>
+<script src="{% static 'bootstrap-4.5/dist/js/bootstrap.min.js' %}"></script>
 </body>
 </html>
-
-
-
-
-
-
