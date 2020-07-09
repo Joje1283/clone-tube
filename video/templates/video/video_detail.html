@@ -4,28 +4,31 @@
     <link href="{% static 'node_modules/video.js/dist/video-js.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-    <div class="container">
-        <video
-            id="my-video"
-            class="video-js"
-            controls
-            preload="auto"
-            width="640"
-            height="264"
-            poster="MY_VIDEO_POSTER.jpg"
-            data-setup="{}"
-          >
-            <source src="../../../media/video/MY_VIDEO.mp4" type="video/mp4" />
-            <source src="../../../media/video/MY_VIDEO.webm" type="video/webm" />
-            <p class="vjs-no-js">
-              To view this video please enable JavaScript, and consider upgrading to a
-              web browser that
-              <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
-      </video>
-    </div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h4">영상1</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <video
+                        id="my-video"
+                        class="video-js vjs-16-9"
+                        controls
+                        preload="auto"
+                        data-setup="{}"
+                >
+                    <source src="../../../media/video/MY_VIDEO.mp4" type="video/mp4"/>
+                    <source src="../../../media/video/MY_VIDEO.webm" type="video/webm"/>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                </video>
+            </div>
+        </div>
+    </main>
 {% endblock %}
 {% block extrajs %}
-    {#  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>  #}
     <script src="{% static 'node_modules/video.js/dist/video.js' %}"></script>
 {% endblock %}
