@@ -6,6 +6,22 @@
     <title>Title</title>
     <link href="{% static 'bootstrap-4.5/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'bootstrap-4.5/site/docs/4.5/examples/dashboard/dashboard.css' %}" rel="stylesheet">
+    <style>
+        .image-cropper {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .profile {
+            display: inline;
+            margin: 0 auto;
+            height: 100%;
+            width: auto;
+        }
+    </style>
     {% block extracss %}{% endblock %}
 </head>
 <body>
@@ -17,11 +33,12 @@
     </button>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     {% if user.is_authenticated %}
-        <div class="dropdown">
-            <button type="button" id="dropdownMenuButton"
+        <div class="dropdown mx-3">
+            <button type="button" id="dropdownMenuButton" class="image-cropper"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
-                <img src="{% static 'img/unnamed.jpg'  %}"/>
+                <img class="profile" src="{% static 'img/blank.png' %}"/>
             </button>
+
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">로그아웃</a>
                 <a class="dropdown-item" href="#">내 채널</a>
@@ -29,10 +46,10 @@
         </div>
     {% else %}
         <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">로그인</a>
-        </li>
-    </ul>
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">로그인</a>
+            </li>
+        </ul>
     {% endif %}
 
 </nav>
