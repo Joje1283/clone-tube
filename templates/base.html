@@ -40,14 +40,14 @@
             </button>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">로그아웃</a>
+                <a class="dropdown-item" href="{% url 'accounts:logout' %}">로그아웃</a>
                 <a class="dropdown-item" href="#">내 채널</a>
             </div>
         </div>
     {% else %}
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">로그인</a>
+                <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
             </li>
         </ul>
     {% endif %}
@@ -71,12 +71,14 @@
                             인기
                         </a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="shopping-cart"></span>
                             구독
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
 
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -86,6 +88,7 @@
                     </a>
                 </h6>
                 <ul class="nav flex-column mb-2">
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="file-text"></span>
@@ -110,6 +113,7 @@
                             분당우리교회
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

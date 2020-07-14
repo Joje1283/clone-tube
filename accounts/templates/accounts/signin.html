@@ -1,0 +1,45 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-in</title>
+    <link href="{% static 'bootstrap-4.5/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts/signin.css' %}" rel="stylesheet">
+</head>
+
+
+<body class="text-center">
+<form action="{% url 'accounts:login' %}" method="post" class="form-signin">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    {#    <label for="inputEmail" class="sr-only">Email address</label>#}
+    {#    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>#}
+    {#    <label for="inputPassword" class="sr-only">Password</label>#}
+    {#    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>#}
+    {#    <div class="checkbox mb-3">#}
+    {#        <label>#}
+    {#            <input type="checkbox" value="remember-me"> Remember me#}
+    {#        </label>#}
+    {#    </div>#}
+    {% for field in login_form %}
+        <label for="{{ field.id_for_label }}" class="sr-only">{{ field.label }}</label>
+        {% ifequal field.name 'username' %}
+            <input type="{{ field.field.widget.input_type }}" id="{{ field.id_for_label }}" name="{{ field.name }}"
+                   class="form-control" placeholder="Email address" required autofocus>
+        {% else %}
+            <input type="{{ field.field.widget.input_type }}" class="form-control"
+                   id="{{ field.id_for_label }}" placeholder="Password" required
+                   name="{{ field.name }}">
+        {% endifequal %}
+        {% if field.errors %}
+            <span style="color: red">{{ field.errors }}</span>
+        {% endif %}
+    {% endfor %}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2020 chotube </p>
+</form>
+</body>
+</html>
