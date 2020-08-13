@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block extracss %}
-    <link href="{% static 'node_modules/video.js/dist/video-js.css' %}" rel="stylesheet">
+    {#    <link href="{% static 'node_modules/www.js/dist/www-js.css' %}" rel="stylesheet">#}
+
 {% endblock %}
 {% block content %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
@@ -11,15 +12,12 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="row mb-3">
-                    <video
-                            id="my-video vjs-default-skin"
-                            class="video-js vjs-16-9"
-                            controls
-                            preload="none"
-                            controlsList="nodownload"
-                            data-setup="{}"
-                    >
-                        <source src="../../../media/test/[스타크래프트 라이브 콘서트] 테란 음악 앵콜 영상.mp4" type="video/mp4"/>
+                    <video id="example_video_1" class="video-js vjs-default-skin vjs-16-9" controls preload="auto"
+                           data-setup="{}">
+{#                        <source src="//vjs.zencdn.net/v/oceans.mp4"#}
+{#                                type="video/mp4"/>#}
+                        <source src="{{ video.upload.url }}"
+                                type="video/mp4"/>
                         <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a
                             web browser that
@@ -69,7 +67,8 @@
             <div class="col-sm-4">
                 <ul class="list-unstyled">
                     <li class="media my-2">
-                        <img class="profile mr-3" src="{% static 'img/blank.png' %}" alt="Generic placeholder image" style="width: 168px; height: 94px;">
+                        <img class="profile mr-3" src="{% static 'img/blank.png' %}" alt="Generic placeholder image"
+                             style="width: 168px; height: 94px;">
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">함께여서 더 즐거운 비긴어게인 코리아</h5>
                             <h6>비긴어게인</h6>
@@ -77,7 +76,8 @@
                         </div>
                     </li>
                     <li class="media my-2">
-                        <img class="profile mr-3" src="{% static 'img/blank.png' %}" alt="Generic placeholder image" style="width: 168px; height: 94px;">
+                        <img class="profile mr-3" src="{% static 'img/blank.png' %}" alt="Generic placeholder image"
+                             style="width: 168px; height: 94px;">
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">함께여서 더 즐거운 비긴어게인 코리아</h5>
                             <h6>비긴어게인</h6>
@@ -85,7 +85,8 @@
                         </div>
                     </li>
                     <li class="media my-2">
-                        <img class="profile mr-3" src="{% static 'img/blank.png' %}" alt="Generic placeholder image" style="width: 168px; height: 94px;">
+                        <img class="profile mr-3" src="{% static 'img/blank.png' %}" alt="Generic placeholder image"
+                             style="width: 168px; height: 94px;">
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">함께여서 더 즐거운 비긴어게인 코리아</h5>
                             <h6>비긴어게인</h6>
@@ -98,5 +99,5 @@
     </main>
 {% endblock %}
 {% block extrajs %}
-    <script src="{% static 'node_modules/video.js/dist/video.js' %}"></script>
+    {#    <script src="{% static 'node_modules/www.js/dist/www.js' %}"></script>#}
 {% endblock %}

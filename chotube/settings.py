@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from chotube.config import aws_config, django_sercret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm$))(^6m%)d@_8fx3l!2p84(buqp(ro*7^otnj5ly_c)-_(&o)'
+SECRET_KEY = django_sercret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,7 +41,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'bootstrap4',
     'accounts',
-    'video',
+    'www',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -132,4 +134,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'accounts.user'
 
-# commit test
+AWS_ACCESS_KEY_ID = aws_config['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = aws_config['AWS_SECRET_ACCESS_KEY']
+AWS_REGION = aws_config['AWS_REGION']
+AWS_STORAGE_BUCKET_NAME = aws_config['AWS_STORAGE_BUCKET_NAME']
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = aws_config['AWS_S3_OBJECT_PARAMETERS']
+
+DEFAULT_FILE_STORAGE = 'chotube.asset_storage.MediaStorage'
+# 다음에 만들 MediaStorage라는 클래스를 통해 파일 저장소를 사용하겠다' 라는 의미

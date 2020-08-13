@@ -1,3 +1,5 @@
 Django==3.0.3
 django-extensions==3.0.1
 django-bootstrap4
+boto3
+django-storages

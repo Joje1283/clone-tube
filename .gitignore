@@ -332,3 +332,4 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,windows,pycharm+all,virtualenv
 node_modules/
+chotube/config.py

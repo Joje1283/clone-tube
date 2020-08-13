@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=200, verbose_name='title')),
                 ('description', models.TextField(verbose_name='description')),
-                ('upload', models.FileField(upload_to='video/%Y/%m/%d/')),
+                ('upload', models.FileField(upload_to='www/%Y/%m/%d/')),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.User')),
