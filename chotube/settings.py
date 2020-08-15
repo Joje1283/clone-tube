@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'bootstrap4',
+    'storages',  # Amazone S3
+    'hitcount',  # 조회수
     'accounts',
     'www',
-    'storages',
 ]
 
 MIDDLEWARE = [

@@ -7,15 +7,13 @@
 {% block content %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h4">영상1</h1>
+            <h1 class="h4">{{ video.title }}</h1>
         </div>
         <div class="row">
             <div class="col-sm-8">
                 <div class="row mb-3">
                     <video id="example_video_1" class="video-js vjs-default-skin vjs-16-9" controls preload="auto"
                            data-setup="{}">
-{#                        <source src="//vjs.zencdn.net/v/oceans.mp4"#}
-{#                                type="video/mp4"/>#}
                         <source src="{{ video.upload.url }}"
                                 type="video/mp4"/>
                         <p class="vjs-no-js">
@@ -33,7 +31,7 @@
                     </div>
                     <div class="col-10 col-md-10 col-xl-11">
                         <div class="h6">{{ video.user }}</div>
-                        <p>구독자 1000명</p>
+                        <p>구독자 1000명 / 조회수 {{ hitcount.total_hits }}</p>
                         <p>{{ video.description }}</p>
                     </div>
                 </div>

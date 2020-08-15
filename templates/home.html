@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h6 class="card-title">{{ video.title }}</h6>
                         <div class="card-text">{{ video.user }} 조회수</div>
-                        <div class="card-text">1.6천회 * 7시간전</div>
+                        <div class="card-text">1.6천회 * {{ video.created }}</div>
                     </div>
                 </div>
             {% endfor %}
