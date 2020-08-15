@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 def user_directory_path(instance, filename):
-    return 'user_{}/{}'.format(instance.user, filename)
+    return 'user_{}/{}'.format(instance.user, 'video')
 
 
 class Video(models.Model):

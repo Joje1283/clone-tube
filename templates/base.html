@@ -52,6 +52,11 @@
                 <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
             </li>
         </ul>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
+            </li>
+        </ul>
     {% endif %}
 
 </nav>
@@ -62,7 +67,7 @@
             <div class="sidebar-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="{% url 'www:home' %}">
                             <span data-feather="home"></span>
                             홈 <span class="sr-only">(current)</span>
                         </a>
@@ -130,7 +135,6 @@
 
 <script src="{% static 'jquery-3.5.1.js' %}"></script>
 <script src="{% static 'bootstrap-4.5/dist/js/bootstrap.min.js' %}"></script>
-{#<script src="{% static 'bootstrap-4.5/site/docs/4.5/examples/dashboard/dashboard.js' %}"></script>#}
 {% block extrajs %}{% endblock %}
 </body>
 </html>
