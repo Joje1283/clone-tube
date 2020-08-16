@@ -8,11 +8,14 @@
         <div class="row">
             {% for video in videos %}
                 <div class="col-md-3" onclick="location.href='{% url 'www:video_detail' video.pk %}'">
-                    <img class="card-img-top" src="{% static 'img/blank.svg' %}" alt="Card image cap">
+                    <img class="card-img-top" src="
+                            {% if video.thumbnail %}{{ video.thumbnail.url }}{% else %}{% static 'img/blank.svg' %}{% endif %}"
+                         alt="Card image cap">
                     <div class="card-body">
                         <h6 class="card-title">{{ video.title }}</h6>
                         <div class="card-text">{{ video.user }} 조회수</div>
-                        <div class="card-text">1.6천회 * {{ video.created }}</div>
+                        <div class="card-text">{% if video.hit_count %}{{ video.hit_count.hits }}{% else %}0{% endif %}회
+                            * {{ video.created }}</div>
                     </div>
                 </div>
             {% endfor %}

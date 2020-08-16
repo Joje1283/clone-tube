@@ -9,11 +9,16 @@ def user_directory_path(instance, filename):
     return 'user_{}/{}'.format(instance.user, 'video')
 
 
+def user_thumbnail_directory_path(instance, filename):
+    return 'user_{}/{}'.format(instance.user, 'thumbnai')
+
+
 class Video(models.Model, HitCountMixin):
     title = models.CharField(verbose_name='title', max_length=200)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     description = models.TextField(verbose_name='description')
     upload = models.FileField(upload_to=user_directory_path)
+    thumbnail = models.ImageField(upload_to=user_thumbnail_directory_path, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
