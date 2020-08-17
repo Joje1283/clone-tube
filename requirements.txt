@@ -1,4 +1,4 @@
-Django==3.0.3
+Django==3.0.7
 django-extensions==3.0.1
 django-bootstrap4
 boto3
