@@ -38,7 +38,11 @@
         <div class="dropdown mx-3">
             <button type="button" id="dropdownMenuButton" class="image-cropper"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
-                <img class="profile" src="{% static 'img/blank.png' %}"/>
+                {% if user.thumbnail %}
+                    <img src="{{ user.thumbnail.url }}" alt="" width="{{ user.thumbnail.width }}" height="{{ user.thumbnail.height }}">
+                {% else %}
+                    <img class="profile" src="{% static 'img/blank.png' %}"/>
+                {% endif %}
             </button>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">

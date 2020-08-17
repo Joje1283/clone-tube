@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'storages',  # Amazone S3
     'hitcount',  # 조회수
+    'imagekit',
     'accounts',
     'www',
 ]

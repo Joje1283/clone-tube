@@ -4,4 +4,4 @@ from .models import Video
 
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'thumbnail',)

@@ -6,3 +6,5 @@ django-storages
 # psycopg2  # Windows
 # psycopg2-binary # Mac
 Pillow
+pilkit
+django-imagekit

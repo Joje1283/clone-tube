@@ -7,10 +7,11 @@
         </div>
         <div class="row">
             {% for video in videos %}
-                <div class="col-md-3" onclick="location.href='{% url 'www:video_detail' video.pk %}'">
+                <div class="col-md-3">
+                <a href="{% url 'www:video_detail' video.pk %}">
                     <img class="card-img-top" src="
                             {% if video.thumbnail %}{{ video.thumbnail.url }}{% else %}{% static 'img/blank.svg' %}{% endif %}"
-                         alt="Card image cap">
+                         alt="Card image cap"></a>
                     <div class="card-body">
                         <h6 class="card-title">{{ video.title }}</h6>
                         <div class="card-text">{{ video.user }} 조회수</div>
@@ -20,7 +21,5 @@
                 </div>
             {% endfor %}
         </div>
-
-
     </main>
 {% endblock %}
