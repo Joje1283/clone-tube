@@ -21,7 +21,7 @@ class User(AbstractUser):
 
     def subscribe(self, user):
         subscribing = json.loads(self.subscribing)
-        if not user.pk in subscribing and not self.pk in user.subscribing_by:
+        if not user.pk in subscribing and not self.pk in json.loads(user.subscribing_by):
             user.subscribed(self)
             subscribing = json.loads(self.subscribing)
             subscribing.append(user.pk)
@@ -29,7 +29,7 @@ class User(AbstractUser):
             self.save()
 
     def subscribed(self, user):
-        if not user.pk in self.subscribing_by:
+        if not user.pk in json.loads(self.subscribing_by):
             subscribing_by = json.loads(self.subscribing_by)
             subscribing_by.append(user.pk)
             self.subscribing_by = json.dumps(subscribing_by)
@@ -37,7 +37,7 @@ class User(AbstractUser):
 
     def unsubscribe(self, user):
         subscribing = json.loads(self.subscribing)
-        if user.pk in subscribing and self.pk in user.subscribing_by:
+        if user.pk in subscribing and self.pk in json.loads(user.subscribing_by):
             user.unsubscribed(self)
 
             if user.pk in subscribing:
