@@ -19,6 +19,14 @@ class User(AbstractUser):
     subscribing = models.CharField(max_length=5000, default='[]')
     subscribing_by = models.CharField(max_length=5000, default='[]')
 
+    def is_subscribe(self, user):
+        """user가 self.user에 대한 구독 여부 반환"""
+        subscribing_by = json.loads(self.subscribing_by)
+        return True if user.pk in subscribing_by else False
+
+    def subscriber_count(self):
+        return len(json.loads(self.subscribing_by))
+
     def subscribe(self, user):
         subscribing = json.loads(self.subscribing)
         if not user.pk in subscribing and not self.pk in json.loads(user.subscribing_by):

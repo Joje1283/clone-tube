@@ -1,7 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import DetailView
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from .models import Video
 from hitcount.views import HitCountDetailView
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 def home(request):
@@ -11,13 +14,6 @@ def home(request):
     })
 
 
-# def video_detail(request, pk):
-#     video = get_object_or_404(Video, pk=pk)
-#     return render(request, 'video/video_detail.html', {
-#         'video': video,
-#     })
-
-
 class VideoDetailView(HitCountDetailView):
     model = Video
     template_name = 'video/video_detail.html'
@@ -25,3 +21,19 @@ class VideoDetailView(HitCountDetailView):
 
 
 video_detail = VideoDetailView.as_view()
+
+
+def subscribe_view(request, video_id):
+    video = get_object_or_404(Video, pk=video_id)
+    creater = get_object_or_404(User, pk=video.user.pk)
+    subscriber = request.user
+    subscriber.subscribe(creater)
+    return redirect(reverse('www:video_detail', args=[video_id]))
+
+
+def unsubscribe_view(request, video_id):
+    video = get_object_or_404(Video, pk=video_id)
+    creater = get_object_or_404(User, pk=video.user.pk)
+    subscriber = request.user
+    subscriber.unsubscribe(creater)
+    return redirect(reverse('www:video_detail', args=[video_id]))

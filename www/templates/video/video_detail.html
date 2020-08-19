@@ -24,15 +24,25 @@
                     </video>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-2 col-md-2 col-xl-1">
+                    <div class="col-auto">
                         <div class="image-cropper">
                             <img class="profile" src="{% static 'img/blank.png' %}">
                         </div>
                     </div>
-                    <div class="col-10 col-md-10 col-xl-11">
+                    <div class="col-7 col-md-8 col-xl-9">
                         <div class="h6">{{ video.user }}</div>
-                        <p>구독자 1000명 / 조회수 {{ hitcount.total_hits }}</p>
+                        <p>구독자 {{ video.user.subscriber_count }}명 / 조회수 {{ hitcount.total_hits }}</p>
                         <p>{{ video.description }}</p>
+                    </div>
+                    <div class="col-auto">
+                        {% load custom_tags %}
+                        {% if user.is_authenticated %}
+                            {% if video.user|is_subscribe:user %}
+                                <a type="button" class="btn btn-light" href="{% url 'www:unsubscribe' video.pk %}">구독중</a>
+                            {% else %}
+                                <a type="button" class="btn btn-dark" href="{% url 'www:subscribe' video.pk %}">구독</a>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
                 <hr>
