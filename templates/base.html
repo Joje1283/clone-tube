@@ -39,7 +39,8 @@
             <button type="button" id="dropdownMenuButton" class="image-cropper"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
                 {% if user.thumbnail %}
-                    <img src="{{ user.thumbnail.url }}" alt="" width="{{ user.thumbnail.width }}" height="{{ user.thumbnail.height }}">
+                    <img src="{{ user.thumbnail.url }}" alt="" width="{{ user.thumbnail.width }}"
+                         height="{{ user.thumbnail.height }}">
                 {% else %}
                     <img class="profile" src="{% static 'img/blank.png' %}"/>
                 {% endif %}
@@ -83,12 +84,12 @@
                         </a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="shopping-cart"></span>
-                            구독
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="shopping-cart"></span>
+                                구독
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
 
@@ -100,30 +101,15 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            TBS 시민의방송
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            람썬
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            샌드백
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            분당우리교회
-                        </a>
-                    </li>
+                        {% for channel in user.subscribe_channels %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="file-text"></span>
+                                    {{ channel.username }}
+                                </a>
+                            </li>
+                        {% endfor %}
+
                     {% endif %}
                 </ul>
             </div>

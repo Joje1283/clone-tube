@@ -19,6 +19,11 @@ class User(AbstractUser):
     subscribing = models.CharField(max_length=5000, default='[]')
     subscribing_by = models.CharField(max_length=5000, default='[]')
 
+    @property
+    def subscribe_channels(self):
+        subscribing = json.loads(self.subscribing)
+        return User.objects.filter(pk__in=subscribing)
+
     def is_subscribe(self, user):
         """user가 self.user에 대한 구독 여부 반환"""
         subscribing_by = json.loads(self.subscribing_by)
