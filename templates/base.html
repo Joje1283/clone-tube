@@ -33,11 +33,13 @@
             data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <form method="get" class="w-100" action="{% url 'www:home' %}"><input
+            class="form-control {% if not search %}form-control-dark{% endif %}" name="s" type="text"
+            placeholder="Search" aria-label="Search" value="{% if search %}{{ search }}{% endif %}"></form>
     {% if user.is_authenticated %}
         <div class="dropdown mx-3">
             <button type="button" id="dropdownMenuButton" class="image-cropper"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px;">
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0;">
                 {% if user.thumbnail %}
                     <img src="{{ user.thumbnail.url }}" alt="" width="{{ user.thumbnail.width }}"
                          height="{{ user.thumbnail.height }}">

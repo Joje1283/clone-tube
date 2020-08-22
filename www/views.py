@@ -11,8 +11,12 @@ User = get_user_model()
 
 def home(request):
     videos = Video.objects.all()
+    s = request.GET.get('s')
+    if s:
+        videos = videos.filter(title__icontains=s)
     return render(request, 'home.html', {
         'videos': videos,
+        'search': s,
     })
 
 
