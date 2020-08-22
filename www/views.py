@@ -37,3 +37,10 @@ def unsubscribe_view(request, video_id):
     subscriber = request.user
     subscriber.unsubscribe(creater)
     return redirect(reverse('www:video_detail', args=[video_id]))
+
+
+def channel_video_list(request, channel_user_id):
+    videos = Video.objects.filter(user_id=channel_user_id)
+    return render(request, 'home.html', {
+        'videos': videos,
+    })

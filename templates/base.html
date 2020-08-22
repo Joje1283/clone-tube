@@ -103,21 +103,17 @@
                     {% if user.is_authenticated %}
                         {% for channel in user.subscribe_channels %}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{% url 'www:channel_video_list' channel.pk %}">
                                     <span data-feather="file-text"></span>
                                     {{ channel.username }}
                                 </a>
                             </li>
                         {% endfor %}
-
                     {% endif %}
                 </ul>
             </div>
         </nav>
-
         {% block content %}{% endblock %}
-
-
     </div>
 </div>
 
