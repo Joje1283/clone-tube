@@ -28,7 +28,7 @@
 </head>
 <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="{% url 'www:home' %}">Company name</a>
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="{% url 'www:home' %}">Chotube</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
             data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -72,20 +72,20 @@
             <div class="sidebar-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'www:home' %}">
+                        <a class="nav-link {% if request.path_info == '/' %}active{% endif %}" href="{% url 'www:home' %}">
                             <span data-feather="home"></span>
-                            홈 <span class="sr-only">(current)</span>
+                            홈
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {% if request.path_info == '/trending/' %}active{% endif %}" href="{% url 'www:trending' %}">
                             <span data-feather="file"></span>
                             인기
                         </a>
                     </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {% if request.path_info == '/subscription/' %}active{% endif %}" href="{% url 'www:subscription' %}">
                                 <span data-feather="shopping-cart"></span>
                                 구독
                             </a>
@@ -99,11 +99,12 @@
                         <span data-feather="plus-circle"></span>
                     </a>
                 </h6>
+
                 <ul class="nav flex-column mb-2">
                     {% if user.is_authenticated %}
                         {% for channel in user.subscribe_channels %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'www:channel_video_list' channel.pk %}">
+                                <a class="nav-link {% if request.path_info == channel.get_channel_url  %}active{% endif %}" href="{{ channel.get_channel_url }}">
                                     <span data-feather="file-text"></span>
                                     {{ channel.username }}
                                 </a>

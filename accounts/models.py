@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser, models
+from django.urls import reverse
 from imagekit.processors import Thumbnail
 from imagekit.models import ProcessedImageField
 import json
@@ -20,7 +21,12 @@ class User(AbstractUser):
     subscribing_by = models.CharField(max_length=5000, default='[]')
 
     @property
+    def get_channel_url(self):
+        return reverse("www:channel", args=[self.pk,])
+
+    @property
     def subscribe_channels(self):
+        """구독중인 유저객체 반환"""
         subscribing = json.loads(self.subscribing)
         return User.objects.filter(pk__in=subscribing)
 
@@ -30,6 +36,7 @@ class User(AbstractUser):
         return True if user.pk in subscribing_by else False
 
     def subscriber_count(self):
+        """구독자 수 반환"""
         return len(json.loads(self.subscribing_by))
 
     def subscribe(self, user):
