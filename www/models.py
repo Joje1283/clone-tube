@@ -33,3 +33,17 @@ class Video(models.Model, HitCountMixin):
         else:
             return f'{delta.days}일 전'
 
+
+# https://lightcode.tistory.com/22 참고
+class Reply(models.Model):
+    video = models.ForeignKey('Video', on_delete=models.CASCADE)
+    depth = models.PositiveIntegerField()
+    bundle = models.IntegerField()
+    bundle_order = models.IntegerField()
+    content = models.TextField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.content[:100]}"
