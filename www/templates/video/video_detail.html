@@ -38,7 +38,8 @@
                         {% load custom_tags %}
                         {% if user.is_authenticated %}
                             {% if video.user|is_subscribe:user %}
-                                <a type="button" class="btn btn-light" href="{% url 'www:unsubscribe' video.pk %}">구독중</a>
+                                <a type="button" class="btn btn-light"
+                                   href="{% url 'www:unsubscribe' video.pk %}">구독중</a>
                             {% else %}
                                 <a type="button" class="btn btn-dark" href="{% url 'www:subscribe' video.pk %}">구독</a>
                             {% endif %}
@@ -47,29 +48,67 @@
                 </div>
                 <hr>
                 <div class="row mb-3">
-                    <div class="media m-3">
-                        <div class="image-cropper mr-3"><img class="profile" src="{% static 'img/blank.png' %}"
-                                                             alt="Generic placeholder image"></div>
-                        <div class="media-body">
-                            <h5 class="mt-0">김준우</h5>
-                            <p>형 6월 23일에 택배 까신 거에서 강성태 영어 어원편 나눔 가능할까요.. 영어 공부 너무 하고 싶어요
-                                이메일 보내놨습니다 ㅜㅠ
-                                저 책 딱 한 권만 나눔 받고 싶을 뿐이에요
-                                중고나라 거래 어떻게 하는지도 몰라요
-                                조롱글 그만 적어주세요
-                                보겸 형이 공부 인증 매일 하라고 말하면 할 자신도 있어요</p>
-                            <div class="media mt-3">
-                                <a class="pr-3" href="#">
-                                    <div class="image-cropper"><img class="profile" src="{% static 'img/blank.png' %}"
-                                                                    alt="Generic placeholder image"></div>
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0">잼민이</h5>
-                                    <p>다른거는모르겠는데 이거는 공부라서따봉박는다 ㅋㅋㅋ</p>
-                                </div>
+                    {% if user.is_authenticated %}
+                        {{ reply_form }}
+{#                        <div class="media m-3">#}
+{#                            <div class="image-cropper mr-3">#}
+{#                                <div class="image-cropper mr-3">#}
+{#                                    {% if user.thumbnail %}#}
+{#                                        <img class="profile" src="{{ user.thumbnail.url }}" alt=""#}
+{#                                             width="{{ user.thumbnail.width }}"#}
+{#                                             height="{{ user.thumbnail.height }}">#}
+{#                                    {% else %}#}
+{#                                        <img class="profile" src="{% static 'img/blank.png' %}"/>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                                <div class="media-body">#}
+{#                                    <h5 class="mt-0">{{ user.username }}</h5>#}
+{#                                    <p>???</p>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+
+                    {% endif %}
+                    {% for reply in video.reply_set.all %}
+                        <div class="media m-3">
+                            <div class="image-cropper mr-3">
+                                {% if reply.user.thumbnail %}
+                                    <img class="profile" src="{{ reply.user.thumbnail.url }}" alt=""
+                                         width="{{ reply.user.thumbnail.width }}"
+                                         height="{{ reply.user.thumbnail.height }}">
+                                {% else %}
+                                    <img class="profile" src="{% static 'img/blank.png' %}"/>
+                                {% endif %}
+                            </div>
+                            <div class="media-body">
+                                <h5 class="mt-0">{{ reply.user.username }}</h5>
+                                <p>{{ reply.content }}</p>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
+                    {#                    <div class="media m-3">#}
+                    {#                        <div class="image-cropper mr-3"><img class="profile" src="{% static 'img/blank.png' %}"#}
+                    {#                                                             alt="Generic placeholder image"></div>#}
+                    {#                        <div class="media-body">#}
+                    {#                            <h5 class="mt-0">김준우</h5>#}
+                    {#                            <p>형 6월 23일에 택배 까신 거에서 강성태 영어 어원편 나눔 가능할까요.. 영어 공부 너무 하고 싶어요#}
+                    {#                                이메일 보내놨습니다 ㅜㅠ#}
+                    {#                                저 책 딱 한 권만 나눔 받고 싶을 뿐이에요#}
+                    {#                                중고나라 거래 어떻게 하는지도 몰라요#}
+                    {#                                조롱글 그만 적어주세요#}
+                    {#                                보겸 형이 공부 인증 매일 하라고 말하면 할 자신도 있어요</p>#}
+                    {#                            <div class="media mt-3">#}
+                    {#                                <a class="pr-3" href="#">#}
+                    {#                                    <div class="image-cropper"><img class="profile" src="{% static 'img/blank.png' %}"#}
+                    {#                                                                    alt="Generic placeholder image"></div>#}
+                    {#                                </a>#}
+                    {#                                <div class="media-body">#}
+                    {#                                    <h5 class="mt-0">잼민이</h5>#}
+                    {#                                    <p>다른거는모르겠는데 이거는 공부라서따봉박는다 ㅋㅋㅋ</p>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
                 </div>
             </div>
             <div class="col-sm-4">

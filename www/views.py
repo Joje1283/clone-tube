@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from hitcount.models import HitCount
 
+from .forms import ReplyForm
 from .models import Video
 from hitcount.views import HitCountDetailView
 from django.contrib.auth import get_user_model
@@ -24,6 +25,11 @@ class VideoDetailView(HitCountDetailView):
     model = Video
     template_name = 'video/video_detail.html'
     count_hit = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['reply_form'] = ReplyForm()
+        return context
 
 
 video_detail = VideoDetailView.as_view()
